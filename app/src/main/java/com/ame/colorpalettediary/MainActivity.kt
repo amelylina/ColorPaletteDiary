@@ -4,6 +4,9 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.SeekBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -24,13 +27,58 @@ class MainActivity : AppCompatActivity() {
         saveColorButton = findViewById(R.id.saveColorButton)
         colorPreview = findViewById(R.id.colorPreview)
 
-        pickColorButton.setOnClickListener {
-            selectedColor = Color.rgb(
-                (0..255).random(),
-                (0..255).random(),
-                (0..255).random()
-            )
+        val redSeekerBar = findViewById<SeekBar>(R.id.redSeekBar)
+        val greenSeekerBar = findViewById<SeekBar>(R.id.greenSeekBar)
+        val blueSeekerBar = findViewById<SeekBar>(R.id.blueSeekBar)
+
+        val redLabel = findViewById<TextView>(R.id.redLabel)
+        val greenLabel = findViewById<TextView>(R.id.greenLabel)
+        val blueLabel = findViewById<TextView>(R.id.blueLabel)
+
+        val mainContent = findViewById<LinearLayout>(R.id.mainContent)
+        val colorPreviewAlt = findViewById<View>(R.id.colorPreviewAlt)
+        val doneButton = findViewById<Button>(R.id.doneButton)
+
+        fun updateColorPreview() {
+            val r = redSeekerBar.progress
+            val g = greenSeekerBar.progress
+            val b = blueSeekerBar.progress
+            selectedColor = Color.rgb(r,g,b)
             colorPreview.setBackgroundColor(selectedColor)
+            colorPreviewAlt.setBackgroundColor(selectedColor)
+            redLabel.text = "Red: $r"
+            greenLabel.text = "Green: $g"
+            blueLabel.text = "Blue: $b"
+        }
+
+        val listener = object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                updateColorPreview()
+            }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
+            }
+        }
+
+        val sliderGroup = findViewById<LinearLayout>(R.id.sliderGroup)
+
+        redSeekerBar.setOnSeekBarChangeListener(listener)
+        greenSeekerBar.setOnSeekBarChangeListener(listener)
+        blueSeekerBar.setOnSeekBarChangeListener(listener)
+
+        pickColorButton.setOnClickListener {
+            sliderGroup.visibility = View.VISIBLE
+            mainContent.visibility = View.GONE
+            updateColorPreview()
+        }
+
+        doneButton.setOnClickListener {
+            sliderGroup.visibility = View.GONE
+            mainContent.visibility = View.VISIBLE
         }
 
         saveColorButton.setOnClickListener {

@@ -7,24 +7,100 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <Button
-        android:id="@+id/pickColorButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pick a Color" />
+    <LinearLayout
+            android:id="@+id/sliderGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone">
 
-    <View
-        android:id="@+id/colorPreview"
-        android:layout_height="100dp"
-        android:layout_width="100dp"
-        android:layout_marginTop="24dp"
-        android:background="#cccccc" />
+        <TextView
+            android:id="@+id/redLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Red: 0" />
 
-    <Button
-        android:id="@+id/saveColorButton"
-        android:layout_width="wrap_content"
+        <SeekBar
+            android:id="@+id/redSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="255"
+            android:progress="0" />
+
+        <TextView
+            android:id="@+id/greenLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Green: 0" />
+
+        <SeekBar
+            android:id="@+id/greenSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="255"
+            android:progress="0" />
+
+        <TextView
+            android:id="@+id/blueLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blue: 0" />
+
+        <SeekBar
+            android:id="@+id/blueSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="255"
+            android:progress="0" />
+
+        <View
+            android:id="@+id/colorPreviewAlt"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:background="#cccccc" />
+
+        <Button
+            android:id="@+id/doneButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Done"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mainContent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Save Color" />
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/pickColorButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pick a Color" />
+
+        <View
+            android:id="@+id/colorPreview"
+            android:layout_height="100dp"
+            android:layout_width="100dp"
+            android:layout_marginTop="24dp"
+            android:background="#cccccc" />
+
+        <Button
+            android:id="@+id/saveColorButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Save Color" />
+
+    </LinearLayout>
 
 </LinearLayout>
