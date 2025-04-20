@@ -1,16 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="24dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/mainContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_margin="24dp"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/pickColorButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pick a Color" />
+
+        <View
+            android:id="@+id/colorPreview"
+            android:layout_height="100dp"
+            android:layout_width="100dp"
+            android:layout_marginTop="24dp"
+            android:background="#cccccc" />
+
+        <Button
+            android:id="@+id/saveColorButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Save Color" />
+
+    </LinearLayout>
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
     <LinearLayout
             android:id="@+id/sliderGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:elevation="8dp"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_gravity="center_horizontal"
@@ -73,34 +108,4 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/mainContent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal"
-        android:orientation="vertical" >
-
-        <Button
-            android:id="@+id/pickColorButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pick a Color" />
-
-        <View
-            android:id="@+id/colorPreview"
-            android:layout_height="100dp"
-            android:layout_width="100dp"
-            android:layout_marginTop="24dp"
-            android:background="#cccccc" />
-
-        <Button
-            android:id="@+id/saveColorButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Save Color" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</FrameLayout>

@@ -2,7 +2,9 @@ package com.ame.colorpalettediary
 
 import android.graphics.Color
 import android.os.Bundle
+import android.renderscript.RenderScript
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.SeekBar
@@ -23,6 +25,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val blurView = findViewById<eightbitlab.com.blurview.BlurView>(R.id.blurView)
+
+        val rootView = window.decorView.findViewById<ViewGroup>(android.R.id.content)
+
+        val blurRadius = 16f
+
+        blurView.setupWith(rootView)
+            .setFrameClearDrawable(window.decorView.background)
+            .setBlurRadius(blurRadius)
+
         pickColorButton = findViewById(R.id.pickColorButton)
         saveColorButton = findViewById(R.id.saveColorButton)
         colorPreview = findViewById(R.id.colorPreview)
@@ -71,14 +84,14 @@ class MainActivity : AppCompatActivity() {
         blueSeekerBar.setOnSeekBarChangeListener(listener)
 
         pickColorButton.setOnClickListener {
+            blurView.visibility = View.VISIBLE
             sliderGroup.visibility = View.VISIBLE
-            mainContent.visibility = View.GONE
             updateColorPreview()
         }
 
         doneButton.setOnClickListener {
+            blurView.visibility = View.GONE
             sliderGroup.visibility = View.GONE
-            mainContent.visibility = View.VISIBLE
         }
 
         saveColorButton.setOnClickListener {
